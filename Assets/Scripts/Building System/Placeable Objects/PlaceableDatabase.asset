@@ -19,3 +19,6 @@ MonoBehaviour:
   - id: 1
     size: {x: 2, y: 1}
     prefab: {fileID: 3460123850754568628, guid: fde081bdf583b504f96c8d6f5d27918d, type: 3}
+  - id: 2
+    size: {x: 2, y: 2}
+    prefab: {fileID: 1224085559936207994, guid: 7267008d6d6a887409c43cc6e27e3d55, type: 3}

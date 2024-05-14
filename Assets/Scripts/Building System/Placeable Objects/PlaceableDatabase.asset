@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: PlaceableDatabase
   m_EditorClassIdentifier: 
   placeableOjects:
-  - {fileID: 0}
+  - id: 0
+    size: {x: 1, y: 1}
+    prefab: {fileID: 2272397479097813437, guid: 4e2dfde006d59fd40bcb8a397933fd55, type: 3}
+  - id: 1
+    size: {x: 2, y: 1}
+    prefab: {fileID: 3460123850754568628, guid: fde081bdf583b504f96c8d6f5d27918d, type: 3}

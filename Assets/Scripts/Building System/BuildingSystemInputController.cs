@@ -1,33 +1,34 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class BuildingSystemInputController : MonoBehaviour
 {
-    public Grid grid; // Kéo và thả Grid vào trường này trong Inspector
-    public LayerMask layerMask;
-    public GameObject referenceObject;
+    [SerializeField]
+    private Grid grid;
+    [SerializeField]
+    private LayerMask layerMask;
 
-    //public PlaceableObjectListSO placeableObjectListSO;
-    public List<GameObject> gameObjects;
-    public int listIndex = -1;
+    [SerializeField]
+    private BuildingSystem buildingSystem;
 
-    private void Start()
+    [SerializeField]
+    private GameObject choicedObject;
+
+    void Start()
     {
-        referenceObject = Instantiate(gameObjects[listIndex]);
+        
     }
+
+    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            listIndex++;
-            if(listIndex == gameObjects.Count)
-            {
-                listIndex = 0;
-            }
-            OnChangeListIndex();
+            Debug.Log("Pressed !");
+            buildingSystem.IncreasePlaceableObjectListIndex();
         }
-        if(Input.mousePosition != null)
+        if (Input.mousePosition != null)
         {
             Vector3 mousePosition = Input.mousePosition;
             Vector3Int lastPosition = new Vector3Int();
@@ -45,20 +46,19 @@ public class Test : MonoBehaviour
             Vector3Int cellCenterWorldPositionInt = new Vector3Int(Mathf.RoundToInt(cellCenterWorldPosition.x), Mathf.RoundToInt(cellCenterWorldPosition.y), Mathf.RoundToInt(cellCenterWorldPosition.z));
             if (Input.GetMouseButtonDown(0))
             {
-                //referenceObject.GetComponent<PlaceableObject>().PlaceObject();
-                Instantiate(referenceObject);
-                Debug.Log("Grid Pos : " + cellCenterWorldPositionInt);
+                buildingSystem.PlaceStructure(cellCenterWorldPositionInt);
+                Debug.Log("Grid Pos : " + cellPosition);
             }
 
-            referenceObject.transform.position = cellCenterWorldPositionInt;
+            choicedObject.transform.position = cellCenterWorldPositionInt;
         }
-        
     }
 
-    public void OnChangeListIndex()
+    public void OnChangeChoiceObject(GameObject newObject)
     {
-        Destroy(referenceObject);
-
-        //referenceObject = Instantiate(gameObjects[listIndex].gameObject);
+        Destroy(choicedObject);
+        choicedObject = Instantiate(newObject);
+        
+        choicedObject.GetComponent<Collider>().enabled = false;
     }
 }

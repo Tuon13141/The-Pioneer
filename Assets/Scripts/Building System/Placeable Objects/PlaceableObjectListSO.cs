@@ -6,6 +6,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlaceableObjectListSO : ScriptableObject
 {
-    public List<GameObject> placeableOjects;
+    public List<PlaceableObject> placeableOjects;
 }
 
